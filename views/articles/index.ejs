@@ -1,0 +1,31 @@
+<%- include("base/header") %>
+<div class="container"
+     style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;border-radius: 14px;padding: 14px; background: white">
+    <div class="jumbotron mt-2" style="border-radius: 14px ;padding: 10px;text-align: center">
+        <h1 class="mb-3" style="display:inline-block;">Quotes</h1>
+        <ul style="list-style: none;padding: 0;margin: 0;" class="mr-auto">
+            <li>
+                <a href="/articles/new" class="btn btn-success">Add Quote</a>
+            </li>
+        </ul>
+    </div>
+
+    <%  articles.forEach(article => { %>
+        <div class="card mt-4" style="border-radius: 14px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px">
+            <div class="card-body">
+                <h4 class="card-title">By: <%= article.title %></h4>
+                <div class="card-subtitle text-muted mb-2">
+                    <%= article.createdAt.toLocaleDateString() %>
+                </div>
+                <div class="card-text mb-2" style="font-size: 1.5rem;font-style: italic"><%- article.sanitizedHtml %></div>
+                <a href="articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
+                <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+                <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    <% }) %>
+</div>
+</body>
+</html>
