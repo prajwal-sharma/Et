@@ -15,9 +15,11 @@ app.use(methodOverride('_method'))
 
 app.get('/', async (req, res) => {
   const articles = await Article.find().sort({ createdAt: 'desc' })
-  // const size = Article.find().count();
-  // console.log("size is", size  )
-  res.render('articles/index', { articles: articles })
+  let size ;
+  await Article.find().count({}, function(err, count){
+    size = count;
+  });
+  res.render('articles/index', { articles: articles,size:size })
 })
 
 app.use('/articles', articleRouter)

@@ -10,6 +10,7 @@
         </ul>
     </div>
 
+    <%if(size>0){%>
     <%  articles.forEach(article => { %>
         <div class="card mt-4" style="border-radius: 14px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px">
             <div class="card-body">
@@ -25,7 +26,13 @@
                 </form>
             </div>
         </div>
-    <% }) %>
+    <% })} %>
+    <%   if(size===0){%>
+        <div class="jumbotron mt-2" style="border-radius: 14px ;padding: 10px;text-align: center;">
+            <h1 class="mb-3" style="display:inline-block;">No Quotes Available...</h1>
+
+        </div>
+    <%}%>
 </div>
 </body>
 </html>
